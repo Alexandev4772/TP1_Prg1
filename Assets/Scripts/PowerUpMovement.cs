@@ -20,5 +20,20 @@ public class PowerUpMovement : MonoBehaviour
 
         // Aplicamos el movimiento únicamente al eje Y
         transform.position = posicionInicial + new Vector3(0f, desfaseY, 0f);
+        
+    }
+
+    public void OnTriggerEnter (Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            
+            PlayerMovement player = other.gameObject.GetComponent<PlayerMovement>();
+            if (player != null)
+            {
+                player.dobleSaltoHabilitado = true;
+            }
+            Destroy(gameObject);
+        }
     }
 }
